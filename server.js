@@ -9,7 +9,19 @@ const typesArray = loadFilesSync('**/*', {
 });
 
 const schema = makeExecutableSchema({
-    typeDefs: typesArray
+    typeDefs: typesArray,
+    resolvers: {
+        Query: {
+            products: (parent, args, context, info) => {
+                console.log('Getting Products...');
+                return parent.products;
+            },
+            orders: (parent, args, context, info) => {
+                console.log('Getting Orders...');
+                return parent.products;
+            }
+        }
+    }
 })
 
 const root = {
